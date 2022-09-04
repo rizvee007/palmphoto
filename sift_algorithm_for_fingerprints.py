@@ -11,13 +11,11 @@ import cv2
 import pickle
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
+import os
 
 !pip install opencv-contrib-python==4.4.0.44
 
-"""###Resize Images function"""
-
-# Resize images to a similar dimension
-# This helps improve accuracy and decreases unnecessarily high number of keypoints
 
 def imageResizeTrain(image):
     maxD = 1024
@@ -42,12 +40,7 @@ def imageResizeTest(image):
     return image
 
 """###Generate Keypoint and Descriptors
-
-####Prepare list of images
 """
-
-import numpy as np
-import os
 
 folder_dir = '/content/drive/MyDrive/hpoly_LeftHand/'
 imageList = []
@@ -63,15 +56,12 @@ print(imageList)
 
 len(imageList)
 
-# # Define a list of images the way you like
-
 # imageList = ['palm.jpg', 'palm1.jpg','palm2.jpg','palm3.jpg','palm4.jpg','palm5.jpg','palm6.jpg','palm7.jpg','palm8.jpg','palm9.jpg','palm10.jpg','palm11.jpg','palm12.jpg', 'palm13.jpg', 'palm14.jpg', 'palm15.jpg' , 'palm16.jpg','palm17.jpg', 'palm18.jpg',
 #              'palm19.jpg', 'palm20.jpg', 'palm21.jpg','palm22.jpg','palm23.jpg','palm24.jpg','palm25.jpg','palm26.jpg','palm27.jpg','palm28.jpg','palm29.jpg','palm30.jpg']
 
 from google.colab import drive
 drive.mount('/content/drive')
 
-# We use grayscale images for generating keypoints
 imagesBW = []
 for imageName in imageList:
     imagePath = "/content/drive/MyDrive/hpoly_LeftHand/" + str(imageName)
@@ -172,7 +162,7 @@ def getPlotFor(i,j,keypoint1,keypoint2,matches):
 
 """Scoring metric
 
-####A score greater than 5 means very good
+#### Score level calculation
 """
 
 def calculateScore(matches,keypoint1,keypoint2):
@@ -234,22 +224,7 @@ print(result)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""For myself"""
+""""""
 
 ##For good images
 data = {'y_Actual':    ['palm.jpg', 'palm1.jpg','palm2.jpg','palm3.jpg','palm4.jpg','palm5.jpg','palm6.jpg','palm7.jpg','palm8.jpg','palm9.jpg','palm10.jpg',
